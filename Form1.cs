@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
+using System.IO;
 
 namespace ComProt_Proto
 {
@@ -78,16 +79,46 @@ namespace ComProt_Proto
             
                 dataIN = serialPort1.ReadExisting();
                 this.Invoke(new EventHandler(ShowData));
-                
+               
             
         }
 
-  
-        
 
-      
-   
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            // Create and show a SaveFileDialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "CSV Files|*.csv";
+            saveFileDialog.Title = "Save Data to CSV File";
 
-      
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+
+                try
+                {
+                    using (StreamWriter fileWriter = new StreamWriter(filePath))
+                    {
+                        // Read data from tBoxDataOut and write it to the CSV file
+                        string data = tBoxDataOut.Text;
+                        fileWriter.WriteLine(data);
+                    }
+
+                    MessageBox.Show("Data saved to " + filePath, "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            tBoxDataOut.Text = string.Empty; // Clear the text in tBoxDataOut
+        }
+
     }
 }

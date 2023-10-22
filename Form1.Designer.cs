@@ -47,6 +47,8 @@
             this.btnConnect = new System.Windows.Forms.Button();
             this.tBoxDataOut = new System.Windows.Forms.TextBox();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -176,6 +178,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.btnSendData);
             this.groupBox2.Controls.Add(this.progressBar1);
             this.groupBox2.Controls.Add(this.btnDisconnect);
@@ -235,11 +238,32 @@
             // 
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(136, 67);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(112, 43);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "SAVE DATA";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(285, 341);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(118, 34);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "CLEAR";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 459);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.tBoxDataOut);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -274,6 +298,8 @@
         private System.Windows.Forms.Button btnSendData;
         private System.Windows.Forms.TextBox tBoxDataOut;
         private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
